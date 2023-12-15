@@ -27,7 +27,8 @@ a:hover {
 html,
 body {
   height: 100%;
-  background-color: #333;
+  background: rgb(8,93,134);
+  background: linear-gradient(90deg, rgba(8,93,134,1) 0%, rgba(10,96,121,1) 30%, rgba(10,100,98,1) 100%);
 }
 
 body {
@@ -107,4 +108,17 @@ body {
  */
 .mastfoot {
   color: rgba(255, 255, 255, .5);
+}
+
+
+.sayem-bg-gradient {
+    background: rgb(8,93,134);
+    background: linear-gradient(90deg, rgba(8,93,134,1) 0%, rgba(10,96,121,1) 30%, rgba(10,100,98,1) 100%);
+}
+
+.sayem-primary-button {
+    background-color: #093d8f;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
 }

@@ -1,18 +1,31 @@
 const { PrismaClient } = require('@prisma/client')
+const bcrypt = require("bcrypt")
 const prisma = new PrismaClient()
 
 async function main() {
-    const sayem = await prisma.admin.upsert({
-        where: { username: 'SAYEM' },
-        update: {},
-        create: {
+    const createUser = await prisma.admin.create({
+        data: {
             name: 'SAYEM',
             username: 'SAYEM',
-            password: 'Alice'
-        },
+            password: await bcrypt.hash('sayem.1234', 10)
+        }
     })
 
-    console.log(sayem)
+    const requestType = await prisma.RequestType.createMany({
+        data: [
+            {
+                name: 'GENEL'
+            },
+            {
+                name: 'ÖNERİ'
+            },
+            {
+                name: 'ŞİKAYET'
+            }
+        ]
+    })
+
+    console.log({ createUser, requestType })
 }
 main()
 .then(async () => {

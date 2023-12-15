@@ -12,10 +12,16 @@ model Request {
   title       String
   description String
   status      Boolean  @default(false)
-  type        RequestType @default(GENERAL)
   responses   Response[]
+  type        RequestType[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+model RequestType {
+  id          Int    @id @default(autoincrement())
+  name        String
+  requests    Request[]
 }
 
 model Admin {
@@ -31,14 +37,8 @@ model Response {
   message     String
   author      Admin      @relation(fields: [authorId], references: [id])
   authorId    Int
-  request     Request      @relation(fields: [requestId], references: [id])
+  request     Request    @relation(fields: [requestId], references: [id])
   requestId   Int
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
-}
-
-enum RequestType {
-  GENERAL
-  SUGGESTION
-  COMPLAINT
 }

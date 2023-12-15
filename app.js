@@ -33,7 +33,15 @@ app.get('/', (req, res) => {
 })
 
 app.get('/login', (req, res) => {
-    res.render('login', { title: 'SAYEM | Yetkili girişi'})
+    res.render('auth/login', { title: 'SAYEM | Yetkili girişi'})
+})
+
+app.get('/request', (req, res) => {
+    res.render('my-requests', { title: 'SAYEM | Talep sorgulama'})
+})
+
+app.get('/requests', (req, res) => {
+    res.render('requests', { title: 'SAYEM | Talepler'})
 })
 
 

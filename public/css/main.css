@@ -44,7 +44,8 @@ body {
 }
 
 .cover-container {
-  max-width: 42em;
+    width: 48em;
+    max-width: 48em;
 }
 
 
@@ -69,7 +70,7 @@ body {
 
 .nav-masthead .nav-link:hover,
 .nav-masthead .nav-link:focus {
-  border-bottom-color: rgba(255, 255, 255, .25);
+  border-bottom-color: #fff;
 }
 
 .nav-masthead .nav-link + .nav-link {
@@ -107,7 +108,7 @@ body {
  * Footer
  */
 .mastfoot {
-  color: rgba(255, 255, 255, .5);
+  color: #fff;
 }
 
 
@@ -121,4 +122,12 @@ body {
     color: #fff;
     font-size: 13px;
     font-weight: 500;
+}
+
+.sayem-nav-link {
+    margin-top: 10px;
+}
+
+.sayem-title-black {
+    color: black;
 }

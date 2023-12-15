@@ -11,9 +11,9 @@
                             <div class="form-group">
                                 <select class="form-control input-lg" required>
                                     <option value="" selected="">Talep Türü Seçiniz</option>
-                                    <option value="GENERAL">Genel</option>
-                                    <option value="SUGGESTION">Öneri</option>
-                                    <option value="COMPLAINT">Şikayet</option>
+                                    <% data.forEach(function(type) { %>
+                                        <option value="<%= type.id %>"><%= type.name %></option>
+                                    <% }); %>
                                 </select>
                             </div>
                             <div class="form-group has-success">

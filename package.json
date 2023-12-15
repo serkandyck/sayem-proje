@@ -1,0 +1,19 @@
+{
+  "name": "sayem-proje",
+  "version": "0.0.1",
+  "description": "Sayem Yazılım geliştirici 5 projesi",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/serkandyck/sayem-proje.git"
+  },
+  "author": "SERKAN DAYICIK <serkandayicik@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/serkandyck/sayem-proje/issues"
+  },
+  "homepage": "https://github.com/serkandyck/sayem-proje#readme"
+}

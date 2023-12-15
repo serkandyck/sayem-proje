@@ -7,8 +7,38 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Request {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  status      Boolean  @default(false)
+  type        RequestType @default(GENERAL)
+  responses   Response[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
 model Admin {
-  id       Int      @id @default(autoincrement())
-  username String   @unique
-  password String
+  id          Int      @id @default(autoincrement())
+  name        String?
+  username    String   @unique
+  password    String
+  responses   Response[]
+}
+
+model Response {
+  id          Int        @id @default(autoincrement())
+  message     String
+  author      Admin      @relation(fields: [authorId], references: [id])
+  authorId    Int
+  request     Request      @relation(fields: [requestId], references: [id])
+  requestId   Int
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+enum RequestType {
+  GENERAL
+  SUGGESTION
+  COMPLAINT
 }

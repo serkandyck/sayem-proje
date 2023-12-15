@@ -2,7 +2,7 @@
   "name": "sayem-proje",
   "version": "0.0.1",
   "description": "Sayem Yazılım geliştirici 5 projesi",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js",

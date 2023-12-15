@@ -1,5 +1,5 @@
-const bodyParser = require('body-parser');
 const express = require('express');
+const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
 let app = express();
 
@@ -29,7 +29,11 @@ const router = express.Router();
 app.use(router);
 
 app.get('/', (req, res) => {
-    res.render('index', { title: 'Home Page'})
+    res.render('index', { title: 'SAYEM | Talep toplama formu'})
+})
+
+app.get('/login', (req, res) => {
+    res.render('login', { title: 'SAYEM | Yetkili girişi'})
 })
 
 

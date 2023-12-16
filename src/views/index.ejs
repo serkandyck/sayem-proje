@@ -7,9 +7,9 @@
                         <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Örnek hata.
                     </div>
                     <fieldset>
-                        <form action="/request" method="post">
+                        <form action="/form-request" method="post">
                             <div class="form-group">
-                                <select class="form-control input-lg" required>
+                                <select class="form-control input-lg" name="request_type" required>
                                     <option value="" selected="">Talep Türü Seçiniz</option>
                                     <% data.forEach(function(type) { %>
                                         <option value="<%= type.id %>"><%= type.name %></option>

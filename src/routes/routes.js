@@ -7,6 +7,9 @@ const { authController, loginController } = require("../controllers/authControll
 const router = express.Router()
 
 router.get("/", homeController);
+
+router.post("/form-request", requestController);
+
 router.get("/login", authController);
 router.post("/form-login", loginController);
 

@@ -6,7 +6,9 @@ let app = express()
 const passport=require('passport');
 const LocalStrategy=require('passport-local').Strategy;
 const session = require('express-session');
-var MySQLStore = require('express-mysql-session')(session);
+var FileStore = require('session-file-store')(session);
+
+var fileStoreOptions = {};
 
 const routes = require('./src/routes/routes')
 
@@ -35,8 +37,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(session({
     secret: process.env.SECRET,
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true }
+    store: new FileStore(fileStoreOptions),
 }));
 
 app.use(routes)

@@ -14,13 +14,13 @@ const loginController = async(req, res) => {
         }
     })
 
+    console.log(user)
+
     if(user) {
-        //eğer kullanıcı varsa bcrypt ile şifreleri karşılaştırıyoruz
         const isSame = await bcrypt.compare(password, user.password);
 
-        //eğer şifre doğru ise uuid ile token oluşturup cookie'ye atıyoruz
         if (isSame) {
-            req.session.userId = user.id
+            req.session.user = user
             res.redirect('dashboard');
         } else {
             res.render("auth/login", { title: "SAYEM | Yetkili girişi", error: "Kullanıcı adı veya şifre hatalı!"});

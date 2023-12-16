@@ -140,3 +140,7 @@ body {
 .sayem-secondary-button:hover {
     border-bottom-color: #fff;
 }
+
+.hidden {
+    display: none;
+}

@@ -1,16 +1,16 @@
 const db = require("../config/dbContext");
 
 const requestController = async(req, res) => {
-    const { request_type, request_title, request_content } = req.body;
+    const { requestType, requestTitle, requestContent } = req.body;
     //TODO validation
 
     const request = await db.Request.create({
         data :{
-            title: request_title,
-            description: request_content,
+            title: requestTitle,
+            description: requestContent,
             requestType : {
                 connect: {
-                    id: parseInt(request_type)
+                    id: parseInt(requestType)
                 }
             }
         }

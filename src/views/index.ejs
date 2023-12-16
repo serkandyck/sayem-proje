@@ -7,9 +7,9 @@
                         <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Örnek hata.
                     </div>
                     <fieldset>
-                        <form action="/form-request" method="post">
+                        <form id="request-form" action="" method="post">
                             <div class="form-group">
-                                <select class="form-control input-lg" name="request_type" required>
+                                <select class="form-control input-lg" name="request_type" id="request_type" required>
                                     <option value="" selected="">Talep Türü Seçiniz</option>
                                     <% data.forEach(function(type) { %>
                                         <option value="<%= type.id %>"><%= type.name %></option>
@@ -17,10 +17,10 @@
                                 </select>
                             </div>
                             <div class="form-group has-success">
-                                <input class="form-control input-lg" placeholder="Talep Başlığı" name="request_title" value="" type="text" minlength="3" required>
+                                <input class="form-control input-lg" placeholder="Talep Başlığı" name="request_title" id="request_title" value="" type="text" minlength="3" required>
                             </div>
                             <div class="form-group has-success">
-                                <textarea class="form-control input-lg" rows="3" placeholder="Talebiniz" name="request_content" value="" type="text" minlength="3" required></textarea>
+                                <textarea class="form-control input-lg" rows="3" placeholder="Talebiniz" name="request_content" id="request_content" value="" type="text" minlength="3" required></textarea>
                             </div>
 
                             <input class="btn btn-lg sayem-primary-button btn-block" value="Kaydet" type="submit">

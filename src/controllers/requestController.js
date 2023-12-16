@@ -19,6 +19,7 @@ const findRequest = async(req, res) => {
             responses: true
         }
     });
+    
     console.log(request)
     if(request) {
         res.render("request/detail", { title: "SAYEM | Talep detayı", data: request});

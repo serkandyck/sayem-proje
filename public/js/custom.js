@@ -28,14 +28,15 @@ $( "#request-form" ).on("submit", function( event ) {
         $( "#request-form" ).trigger("reset");
         $("#succ-alert").removeClass("hidden");
         $("#succ-alert").html(data.message + " Talep numaranız </br><b>" + data.uuid + "</b>");
-      }).fail(function () {
+      }).fail(function (data) {
         Swal.fire({
             title: "Beklenmedik bir hata ile karşılaşıldı",
             icon: 'error',
             confirmButtonText: 'Tamam'
         })
+        document.body.classList.remove('swal2-height-auto');
         $("#err-alert").removeClass("hidden");
-        $("#err-alert").html("Beklenmedik bir hata ile karşılaşıldı");
+        $("#err-alert").html(data.message);
       });
 
     event.preventDefault();

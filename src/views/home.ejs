@@ -10,20 +10,29 @@
                     Örnek Başarı.
                 </div>
                 <fieldset>
-                    <form id="request-create" action="/request" method="post">
+                    <form action="/request/create" method="post" class="needs-validation" novalidate>
                         <div class="form-group">
-                            <select class="form-control input-lg" name="request_type" id="request_type">
+                            <select class="form-control input-lg" name="requestType" id="requestType" required>
                                 <option value="" selected="">Talep Türü Seçiniz</option>
                                 <% data.forEach(function(type) { %>
                                     <option value="<%= type.id %>"><%= type.name %></option>
                                 <% }); %>
                             </select>
+                            <div class="invalid-feedback">
+                                Lütfen bir talep türü seçiniz.
+                            </div>
                         </div>
                         <div class="form-group has-success">
-                            <input class="form-control input-lg" placeholder="Talep Başlığı" name="request_title" id="request_title" value="" type="text" minlength="3">
+                            <input class="form-control input-lg" placeholder="Talep Başlığı" name="requestTitle" id="requestTitle" value="" type="text" required>
+                            <div class="invalid-feedback">
+                                Lütfen bir talep başlığı giriniz.
+                            </div>
                         </div>
                         <div class="form-group has-success">
-                            <textarea class="form-control input-lg" rows="3" placeholder="Talebiniz" name="request_content" id="request_content" value="" type="text" minlength="3"></textarea>
+                            <textarea class="form-control input-lg" rows="3" placeholder="Talebiniz" name="requestContent" id="requestContent" value="" type="text" required></textarea>
+                            <div class="invalid-feedback">
+                                Lütfen talebinizin içeriğini giriniz.
+                            </div>
                         </div>
 
                         <input class="btn btn-lg sayem-primary-button btn-block" value="Kaydet" type="submit">
@@ -33,3 +42,31 @@
         </div>
     </div>
 </div>
+
+<script>
+    (function() {
+          'use strict';
+          window.addEventListener('load', function() {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const success = urlParams.get('success')
+            const uuid = urlParams.get('uuid')
+
+            if (success) {
+                Swal.fire({
+                    title: "Talebiniz başarıyla alındı.",
+                    html: `
+                    <div class="alert alert-success" role="alert">
+                        Talep durumunuzu sorgulamak için talep numaraınızı kaydetmeyi unutmayın!
+                    </div>
+                    Talep numaranız </br><b>${uuid}</b>
+                    `,
+                    icon: 'success',
+                    confirmButtonText: 'Tamam'
+                })
+                document.body.classList.remove('swal2-height-auto');
+            }
+            
+          }, false);
+    })();
+</script>

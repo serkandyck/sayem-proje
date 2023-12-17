@@ -1,13 +1,16 @@
 <div class="container-fluid py-3">
     <div class="row">
         <div class="col-md-12 mx-auto">
-                <div id="request-form-card" class="card card-body">
+                <div class="card card-body">
                     <h3 class="text-center mb-4 sayem-title-black">Talep Sorgulama</h3>
 
                     <fieldset>
-                        <form id="find-request-form" action="" method="POST">
+                        <form id="find-request-form" action="/request/find" method="POST" class="needs-validation" novalidate>
                             <div class="form-group has-success">
-                                <input class="form-control input-lg" placeholder="Talep numarası" name="request_uuid" id="request_uuid" value="" type="text">
+                                <input class="form-control input-lg" placeholder="Talep numarası" name="uuid" id="uuid" value="" type="text" required>
+                                <div class="invalid-feedback">
+                                  Lütfen talep numarası girin.
+                                </div>
                             </div>
                             
                             <input class="btn btn-lg sayem-primary-button btn-block" value="Kaydet" type="submit">
@@ -65,3 +68,24 @@
         </div>
     </div>
 </div>
+
+<script>
+  (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+          const queryString = window.location.search;
+          const urlParams = new URLSearchParams(queryString);
+          const error = urlParams.get('error')
+
+          if (error) {
+            Swal.fire({
+              title: "Talep bulunamadı.",
+              icon: "error",
+              confirmButtonText: "Tamam",
+            });
+            document.body.classList.remove('swal2-height-auto');
+          }
+          
+        }, false);
+  })();
+</script>

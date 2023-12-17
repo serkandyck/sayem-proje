@@ -1,6 +1,5 @@
-$( "#request-create" ).on("submit", function( event ) {
+/*$( "#request-create" ).on("submit", function( event ) {
     event.preventDefault();
-
     var formData = {
         requestType: $("#request_type").val(),
         requestTitle: $("#request_title").val(),
@@ -29,21 +28,25 @@ $( "#request-create" ).on("submit", function( event ) {
         $( "#request-create" ).trigger("reset");
         $("#succ-alert").removeClass("hidden");
         $("#succ-alert").html(data.message + " Talep numaranız </br><b>" + data.uuid + "</b>");
-      }).fail(function (data) {
-        Swal.fire({
+      }).fail(function (jqXHR, textStatus, errorThrown) {        
+        if (jqXHR.status == 400) {
+          console.log(jqXHR.responseJSON.errors);
+          $("#err-alert").removeClass("hidden");
+          $("#err-alert").html(jqXHR.responseJSON.errors);
+        } else {
+          Swal.fire({
             title: "Beklenmedik bir hata ile karşılaşıldı",
-            icon: 'error',
-            confirmButtonText: 'Tamam'
-        })
-        document.body.classList.remove('swal2-height-auto');
-        $("#err-alert").removeClass("hidden");
-        $("#err-alert").html(data.message);
+            icon: "error",
+            confirmButtonText: "Tamam",
+          });
+          document.body.classList.remove("swal2-height-auto");
+        }
       });
 
     
-});
+});*/
 
-$("#find-request-form").on("submit", function( event ) {
+/*$("#find-request-form").on("submit", function( event ) {
     event.preventDefault();
 
     var formData = {
@@ -118,7 +121,7 @@ $("#find-request-form").on("submit", function( event ) {
         document.body.classList.remove("swal2-height-auto");
       }
     });
-});
+});*/
 
 function requestStatusConverter(status) {
     if (status) {

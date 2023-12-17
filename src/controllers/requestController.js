@@ -8,15 +8,10 @@ const findRequestView = async(req, res) => {
 
 const findRequest = async(req, res) => {
     const { uuid } = req.body;
-
-    const errors = validationResult(req)
-    if(!errors.isEmpty()) {
-       console.log(errors.array)
-    }
     
     const request = await db.Request.findFirst({
         where: {
-            uuid
+            uuid: uuid
         },
         include: {
             requestType: true
@@ -25,19 +20,67 @@ const findRequest = async(req, res) => {
             responses: true
         }
     });
-    
-    console.log(request)
-    
+        
     if(request) {
-        res.status(201).json({data: request});
+        res.render("request/detail", { title: "SAYEM | Talep durumu", data: request});
     } else {
-        res.status(404).json({message: "Talep bulunamadı."});
+        res.redirect("/request?error=true");
     }
+}
+
+const findRequestWithUUID = async(req, res) => {
+    const { uuid } = req.params;
+    
+    const request = await db.Request.findFirst({
+        where: {
+            uuid: uuid
+        },
+        include: {
+            requestType: true
+        },
+        include: {
+            responses: true
+        }
+    });
+        
+    if(request) {
+        res.render("request/request", { title: "SAYEM | Talep sorgulama", request: request});
+    } else {
+        res.redirect("/request?error=true");
+    }
+}
+
+
+const createRequestHTML = async(req, res) => {
+    const { requestType, requestTitle, requestContent } = req.body;
+
+    const request = await db.Request.create({
+        data :{
+            uuid: uuidv4(),
+            title: requestTitle,
+            content: requestContent,
+            requestType : {
+                connect: {
+                    id: parseInt(requestType)
+                }
+            }
+        }
+    });
+        
+    res.redirect("/?success=true&uuid=" + request.uuid);
+}
+
+
+const createRequestValidationRules = () => {
+    return [
+        body('requestType').isNumeric().withMessage('Lütfen bir talep türü seçiniz.'),
+        body('requestTitle').isLength({ min: 5 }).withMessage('Lütfen talebiniz için en az 5 karakter giriniz.'),
+        body('requestContent').isLength({ min: 10 }).withMessage('Lütfen talebiniz için en az 10 karakter giriniz.')
+    ]
 }
 
 const createRequest = async(req, res) => {
     const { requestType, requestTitle, requestContent } = req.body;
-    //TODO validation
 
     try {
         const request = await db.Request.create({
@@ -57,13 +100,11 @@ const createRequest = async(req, res) => {
     } catch (error) {
         res.status(500).json({message: "Beklenmedik bir hata ile karşılaşıldı.",});
     }
-    
-
-    
 }
 
 module.exports =  {
     createRequest,
+    createRequestHTML,
     findRequest,
     findRequestView
 };

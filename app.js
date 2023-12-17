@@ -7,7 +7,6 @@ const { v4: uuidv4 } = require('uuid');
 
 const session = require('express-session');
 var MemoryStore = session.MemoryStore;
-var FileStore = require('session-file-store')(session);
 
 var fileStoreOptions = {};
 
@@ -56,6 +55,7 @@ if (app.get('env') === 'production') {
     sess.cookie.secure = true // serve secure cookies
 }
 
+// Session bilgisini tüm uygulama ulaşılır kılıyoruz
 app.use(function(req, res, next) {
     res.locals.username = req.session.username;
     next();

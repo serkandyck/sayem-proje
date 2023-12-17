@@ -1,7 +1,5 @@
 const db = require("../config/dbContext")
 const bcrypt = require("bcrypt")
-const jwt = require("jsonwebtoken");
-
 
 const view = async(req, res) => {
     req.session.destroy()

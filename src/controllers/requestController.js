@@ -14,7 +14,7 @@ const findRequest = async(req, res) => {
        console.log(errors.array)
     }
     
-    const request = await db.Request.findUnique({
+    const request = await db.Request.findFirst({
         where: {
             uuid
         },

@@ -27,18 +27,18 @@ model RequestType {
 }
 
 model Admin {
-  id          Int      @id @default(autoincrement())
-  name        String?
   username    String   @unique
   password    String
   responses   Response[]
+
+  @@id([username])
 }
 
 model Response {
   id          Int        @id @default(autoincrement())
-  message     String
-  author      Admin      @relation(fields: [authorId], references: [id])
-  authorId    Int
+  message     String     @db.LongText
+  author      Admin      @relation(fields: [authorName], references: [username])
+  authorName  String
   request     Request    @relation(fields: [requestId], references: [id])
   requestId   Int
   createdAt   DateTime   @default(now())

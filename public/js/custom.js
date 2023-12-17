@@ -69,7 +69,7 @@ $("#find-request-form").on("submit", function( event ) {
       
       reqStatusTitle.html("Talep NO: " + data.data.uuid);
       reqType.html("Talep Tipi: " + "<span class='badge badge-warning'>" + requestTypeConverter(data.data.requestTypeId) + "</span>");
-      reqCreated.html("Talep Tarihi: " + "<span class='badge badge-success'>" + new Date(data.data.createdAt).toLocaleDateString('en-GB') + "</span>");
+      reqCreated.html("Talep Tarihi: " + "<span class='badge badge-success'>" + new Date(data.data.createdAt).toLocaleDateString('tr-TR') + "</span>");
       reqCreatedAt.html("Son güncelleme: " + "<span class='badge badge-info'>" + prettyDate(data.data.updatedAt) + "</span>");
       reqStatus.html(requestStatusConverter(data.data.status));
 
@@ -79,17 +79,18 @@ $("#find-request-form").on("submit", function( event ) {
       if (data.data.responses.length > 0) {
         data.data.responses.forEach(element => {
           $("#admin-responses").append(`
+            <img src="/images/favicon.ico" alt="32x32" class="mr-2 rounded" style="width: 32px; height: 32px;">
             <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
               <div class="d-flex justify-content-between align-items-center w-100">
-                <strong class="text-gray-dark">${element.admin.fullName}</strong>
-                <a href="#">Follow</a>
+                <strong class="text-gray-dark">${element.authorName}</strong>
+                <span>${prettyDate(element.createdAt)}</span>
               </div>
-              <span class="d-block">${element.content}</span>
+              <span class="d-block">${element.message}</span>
             </div>
           `);
         });
       } else {
-        $("#admin-responses").html("Henüz hiç bir yetkili tarafından cevaplanmadı.");
+        $("#admin-responses").html("Talebinize henüz bir cevap verilmedi.");
       }
       
 
@@ -121,7 +122,7 @@ $("#find-request-form").on("submit", function( event ) {
 
 function requestStatusConverter(status) {
     if (status) {
-      return "Cevaplandı";
+      return '<span class="badge badge-success">Cevaplandı</span>';
     } else {
       return '<span class="badge badge-warning">Beklemede</span>';
     }

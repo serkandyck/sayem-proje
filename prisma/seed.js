@@ -5,7 +5,6 @@ const prisma = new PrismaClient()
 async function main() {
     const createUser = await prisma.admin.create({
         data: {
-            name: 'SAYEM',
             username: 'SAYEM',
             password: await bcrypt.hash('sayem.1234', 10)
         }
@@ -14,13 +13,13 @@ async function main() {
     const requestType = await prisma.RequestType.createMany({
         data: [
             {
-                name: 'İstek'
+                name: 'İSTEK'
             },
             {
-                name: 'Şikayet'
+                name: 'ŞİKAYET'
             },
             {
-                name: 'Öneri'
+                name: 'ÖNERİ'
             }
         ]
     })

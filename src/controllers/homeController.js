@@ -1,9 +1,7 @@
-const { PrismaClient } = require('@prisma/client')
-
-const prisma = new PrismaClient()
+const db = require("../config/dbContext");
 
 const view = async(req, res) => {
-    const types = await prisma.RequestType.findMany()
+    const types = await db.RequestType.findMany()
     res.render("home", { title: "SAYEM | Talep toplama formu", data: types});
 }
 

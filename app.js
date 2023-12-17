@@ -40,6 +40,7 @@ app.use(session({
     store: new FileStore(fileStoreOptions),
 }));
 
+// Uygulama üzerindeki route dosyası kullanılıyor
 app.use(routes)
 
 // Uygulama env üzerinde belirtilen port üzerinde çalıştırılıyor

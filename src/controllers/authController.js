@@ -23,10 +23,10 @@ const login = async(req, res) => {
             req.session.user = user
             res.redirect('dashboard');
         } else {
-            res.render("auth/login", { title: "SAYEM | Yetkili girişi", error: "Kullanıcı adı veya şifre hatalı!"});
+            res.redirect("/login?error=true");
         }
     } else {
-        res.render("auth/login", { title: "SAYEM | Yetkili girişi", error: "Kullanıcı adı veya şifre hatalı!"});
+        res.redirect("/login?error=true");
     }
 }
 

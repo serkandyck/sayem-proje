@@ -15,7 +15,7 @@ router.post("/request", requestController.create);
 router.post("/request/:uuid", requestController.find);
 
 
-
+// Authentication işlemleri
 router.get("/login", authController.view);
 router.post("/login", authController.login);
 

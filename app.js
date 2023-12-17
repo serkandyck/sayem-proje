@@ -40,9 +40,10 @@ app.use(session({
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false },
+    cookie: { secure: true },
     store: new FileStore(fileStoreOptions),
 }));
+
 
 // Uygulama üzerindeki route dosyası kullanılıyor
 app.use(routes)

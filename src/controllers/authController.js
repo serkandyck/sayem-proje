@@ -1,5 +1,7 @@
 const db = require("../config/dbContext")
 const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken");
+
 
 const view = async(req, res) => {
     res.render("auth/login", { title: "SAYEM | Yetkili girişi"})
@@ -18,8 +20,13 @@ const login = async(req, res) => {
         const isSame = await bcrypt.compare(password, user.password);
 
         if (isSame) {
-            req.session.user = user
-            res.redirect('dashboard');
+            token = jwt.sign(
+                { userId: user.id, username: user.username },
+                process.env.JWT_SECRET,
+                { expiresIn: "1h" }
+            );
+            
+            res.status(200).json({ data: token });
         } else {
             res.redirect("/login?error=true");
         }
@@ -28,7 +35,12 @@ const login = async(req, res) => {
     }
 }
 
+const unauthorized = async(req, res) => {
+    res.render("auth/notautherized", { title: "SAYEM | Yetkisiz"})
+}
+
 module.exports =  {
     view,
-    login
+    login,
+    unauthorized
 };

@@ -14,9 +14,10 @@ router.get("/", homeController);
 
 // Talep sorgulama
 router.get("/request", requestController.requestView);
+router.post("/request/create", requestController.createRequest);
 router.post("/request/:uuid", requestController.findRequest);
 // Talep oluşturma
-router.post("/request/create", requestController.createRequestHTML);
+
 // Tek talep sorgulama
 router.post("/request/find", requestController.findRequest);
 // Talep listesi

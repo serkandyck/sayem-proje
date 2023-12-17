@@ -3,8 +3,6 @@ const bodyParser = require('body-parser')
 const expressLayouts = require('express-ejs-layouts')
 let app = express()
 
-const passport=require('passport');
-const LocalStrategy=require('passport-local').Strategy;
 const session = require('express-session');
 var FileStore = require('session-file-store')(session);
 
@@ -37,8 +35,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(session({
     secret: process.env.SECRET,
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true },
+    saveUninitialized: false,
+    cookie: { secure: false },
     store: new FileStore(fileStoreOptions),
 }));
 

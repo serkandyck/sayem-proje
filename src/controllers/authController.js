@@ -25,12 +25,6 @@ const loginController = async(req, res) => {
         } else {
             res.render("auth/login", { title: "SAYEM | Yetkili girişi", error: "Kullanıcı adı veya şifre hatalı!"});
         }
-        if(user.password === password) {
-            req.session.user = user;
-            res.redirect("/");
-        } else {
-            res.render("auth/login", { title: "SAYEM | Yetkili girişi", error: "Kullanıcı adı veya şifre hatalı!"});
-        }
     } else {
         res.render("auth/login", { title: "SAYEM | Yetkili girişi", error: "Kullanıcı adı veya şifre hatalı!"});
     }

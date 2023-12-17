@@ -75,6 +75,22 @@ $("#find-request-form").on("submit", function( event ) {
 
       reqTitle.html(data.data.title);
       reqContent.html(data.data.content);
+
+      if (data.data.responses.length > 0) {
+        data.data.responses.forEach(element => {
+          $("#admin-responses").append(`
+            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+              <div class="d-flex justify-content-between align-items-center w-100">
+                <strong class="text-gray-dark">${element.admin.fullName}</strong>
+                <a href="#">Follow</a>
+              </div>
+              <span class="d-block">${element.content}</span>
+            </div>
+          `);
+        });
+      } else {
+        $("#admin-responses").html("Henüz hiç bir yetkili tarafından cevaplanmadı.");
+      }
       
 
     }).fail(function (jqXHR, textStatus, errorThrown) {
@@ -114,11 +130,11 @@ function requestStatusConverter(status) {
 function requestTypeConverter(type) {
     switch(type) {
         case 1:
-            return "İstek";
+            return "İSTEK";
         case 2:
-            return "Şikayet";
+            return "ŞİKAYET";
         case 3:
-            return "Öneri";
+            return "ÖNERİ";
         default:
             return "Bilinmeyen";
     }

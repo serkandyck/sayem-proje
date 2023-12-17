@@ -1,7 +1,7 @@
 const express = require('express')
 
 const { homeController } = require("../controllers/homeController");
-const { createRequest, findRequest, findRequestView, createRequestHTML } = require("../controllers/requestController");
+const requestController = require("../controllers/requestController");
 const { authController, loginController } = require("../controllers/authController");
 
 const { requestCreateCheck } = require("../validators/requestCreate");
@@ -13,12 +13,12 @@ const router = express.Router()
 router.get("/", homeController);
 
 // Talep sorgulama
-router.get("/request", findRequestView);
-//router.get("/request/:uuid", findRequestWithUUID);
+router.get("/request", requestController.requestView);
+router.post("/request/:uuid", requestController.findRequest);
 // Talep oluşturma
-router.post("/request/create", createRequestHTML);
+router.post("/request/create", requestController.createRequestHTML);
 // Tek talep sorgulama
-router.post("/request/find", findRequest);
+router.post("/request/find", requestController.findRequest);
 // Talep listesi
 
 

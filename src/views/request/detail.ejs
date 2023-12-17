@@ -60,11 +60,47 @@
             $("#req-status").html(requestStatusConverter(data.status));
             $("#req-title").text(data.title);
             $("#req-content").text(data.content);
-            $("#req-created").text(dateFormater(data.createdAt));
+            $("#req-created").html(prettyDate(data.createdAt));
             console.log(data)
+
+            if (data.responses.length > 0) {
+                data.responses.forEach(element => {
+                $("#admin-responses").append(`
+                    <img src="/images/favicon.ico" alt="32x32" class="mr-2 rounded" style="width: 32px; height: 32px;">
+                    <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark">${element.authorName}</strong>
+                        <span>${prettyDate(element.createdAt)}</span>
+                    </div>
+                    <span class="d-block">${element.message}</span>
+                    </div>
+                `);
+                });
+            } else {
+                $("#admin-responses").html("Talebinize henüz bir cevap verilmedi.");
+            }
+
+            
             
           }, false);
     })();
+
+    function prettyDate(time){
+        var date = new Date((time || "").replace(/-/g,"/").replace(/[TZ]/g," ")),
+            diff = (((new Date()).getTime() - date.getTime()) / 1000),
+            day_diff = Math.floor(diff / 86400);
+        if ( isNaN(day_diff) || day_diff < 0 || day_diff >= 31 )
+            return;
+        return day_diff == 0 && (
+                diff < 60 && '<span class="badge badge-info">biraz önce</span>' ||
+                diff < 120 && '<span class="badge badge-info">1 dakika önce</span>' ||
+                diff < 3600 && '<span class="badge badge-info">'+ Math.floor( diff / 60 ) + ' dakika önce' +'</span>' ||
+                diff < 7200 && '<span class="badge badge-info">1 saat önce</span>' ||
+                diff < 86400 && '<span class="badge badge-info">'+ Math.floor( diff / 3600 ) + ' saat önce' +'</span>') ||
+            day_diff == 1 && '<span class="badge badge-info">Dün</span>' ||
+            day_diff < 7 && day_diff + ' gün önce' ||
+            day_diff < 31 && Math.ceil( day_diff / 7 ) + ' hafta önce';
+    }
 
     function requestStatusConverter(status) {
         if (status) {

@@ -2,13 +2,13 @@ const db = require("../config/dbContext");
 const { v4: uuidv4 } = require('uuid');
 const { body, validationResult } = require('express-validator')
 
-const findRequestView = async(req, res) => {
+const requestView = async(req, res) => {
     res.render("request/request", { title: "SAYEM | Talep sorgulama"});
 }
 
 const findRequest = async(req, res) => {
-    const { uuid } = req.body;
-    
+    const uuid  = req.params.uuid;
+    console.log(uuid);
     const request = await db.Request.findFirst({
         where: {
             uuid: uuid
@@ -106,5 +106,5 @@ module.exports =  {
     createRequest,
     createRequestHTML,
     findRequest,
-    findRequestView
+    requestView
 };

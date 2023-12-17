@@ -1,10 +1,8 @@
 const requireAuth = (req, res, next) => {
     if (req.session.username) {
-        console.log("Burdayım be", req.session.username);
-        next(); // User is authenticated, continue to next middleware
+        next(); // Kullanıcı yetkili, devam et
     } else {
-        console.log("Nasıl burdayım şak diye");
-        res.redirect('/login'); // User is not authenticated, redirect to login page
+        res.redirect('/login'); // Kullanıcı yetkili değil, login sayfasına yönlendir
     }
 }
 

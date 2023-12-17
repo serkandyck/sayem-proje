@@ -4,6 +4,10 @@
     </a>
     <nav class="nav nav-masthead sayem-nav-link justify-content-center">
         <a class="btn sayem-secondary-button" href="/request">Talep Sorgulama</a>
-        <a class="btn sayem-primary-button" href="/login">Yetkili Girişi</a>
+        <% if (username) { %>
+            <a class="btn sayem-primary-button" href="/login"><%= username %></a>
+        <% } else { %>
+            <a class="btn sayem-primary-button" href="/login">Yetkili Girişi</a>
+        <% } %>
     </nav>
 </div>

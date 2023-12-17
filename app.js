@@ -1,9 +1,12 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const expressLayouts = require('express-ejs-layouts')
+const { v4: uuidv4 } = require('uuid');
+
 
 
 const session = require('express-session');
+var MemoryStore = session.MemoryStore;
 var FileStore = require('session-file-store')(session);
 
 var fileStoreOptions = {};
@@ -37,12 +40,26 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 // Uygulama üzerinde session kullanımı için express-session kütüphanesi kullanılıyor
 app.use(session({
+    genid: function(req) {
+        return uuidv4() // use UUIDs for session IDs
+    },
     secret: process.env.SECRET,
+    store: new MemoryStore({reapInterval: 60000 * 10}),
     resave: false,
-    saveUninitialized: false,
-    cookie: { secure: true },
-    store: new FileStore(fileStoreOptions),
+    saveUninitialized: true,
+    cookie: { secure: false }
 }));
+
+// Production ortamında https üzerinden çalıştırılıyorsa secure cookie kullanılıyor
+if (app.get('env') === 'production') {
+    app.set('trust proxy', 1) // trust first proxy
+    sess.cookie.secure = true // serve secure cookies
+}
+
+app.use(function(req, res, next) {
+    res.locals.username = req.session.username;
+    next();
+});
 
 
 // Uygulama üzerindeki route dosyası kullanılıyor

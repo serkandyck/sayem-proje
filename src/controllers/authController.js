@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 
 
 const view = async(req, res) => {
+    req.session.destroy()
     res.render("auth/login", { title: "SAYEM | Yetkili girişi"})
 }
 
@@ -20,13 +21,13 @@ const login = async(req, res) => {
         const isSame = await bcrypt.compare(password, user.password);
 
         if (isSame) {
-            token = jwt.sign(
-                { userId: user.id, username: user.username },
-                process.env.JWT_SECRET,
-                { expiresIn: "1h" }
-            );
-            
-            res.status(200).json({ data: token });
+            req.session.username = user.username;
+            var hour = 3600000
+            req.session.cookie.expires = new Date(Date.now() + hour)
+            req.session.cookie.maxAge = hour
+            req.session.cookie.sameSite = true
+
+            res.redirect('/admin');
         } else {
             res.redirect("/login?error=true");
         }
@@ -35,12 +36,13 @@ const login = async(req, res) => {
     }
 }
 
-const unauthorized = async(req, res) => {
-    res.render("auth/notautherized", { title: "SAYEM | Yetkisiz"})
+const logout = async(req, res) => {
+    req.session.destroy()
+    res.redirect("/")
 }
 
 module.exports =  {
     view,
     login,
-    unauthorized
+    logout
 };

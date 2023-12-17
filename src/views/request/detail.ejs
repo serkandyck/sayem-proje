@@ -61,7 +61,6 @@
             $("#req-title").text(data.title);
             $("#req-content").text(data.content);
             $("#req-created").html(prettyDate(data.createdAt));
-            console.log(data)
 
             if (data.responses.length > 0) {
                 data.responses.forEach(element => {

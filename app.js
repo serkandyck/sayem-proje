@@ -1,13 +1,16 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const expressLayouts = require('express-ejs-layouts')
-let app = express()
+
 
 const session = require('express-session');
 var FileStore = require('session-file-store')(session);
 
 var fileStoreOptions = {};
 
+let app = express()
+
+// Uygulama rotaları
 const routes = require('./src/routes/routes')
 
 // .env dosyası üzerinden env değişkenlerini kullanmak için dotenv kütüphanesi kullanılıyor
@@ -18,16 +21,17 @@ const PORT = process.env.PORT || 3000
 
 // Uygulama view kısmında layout kullanımı için express-ejs-layouts kütüphanesi kullanılıyor
 app.use(expressLayouts)
+// Kullanıcı layout yetkililer için custom layout kullanılıyor
 app.set('layout', '../layouts/layout')
-// NodeJS template engine ejs
+// NodeJS template engine ejs express-ejs-layouts kütüphanesi ile kullanılıyor
 app.set("view engine", "ejs");
-// Uygulama view kısmında static css ve js dosyalarına ulaşmak için public klasörünü kullanıyor
+// Uygulama view kısmında static resim css ve js dosyalarına ulaşmak için public klasörünü statik olarak belirliyor
 app.use(express.static('public'))
 
-// Uygulama view kısmında views klasörünü kullanıyor
+// Uygulama front-end kısmında kullanılan view dosyaları src/views klasörü altında bulunuyor bu klasörü belirliyor
 app.set('views','./src/views')
 
-// requestler üzerindeki json verileri okuyabilmek için body-parser kullanılıyor
+// Gelen isteklerde body-parser kütüphanesi ile gelen verileri json ve urlencoded olarak parse ediyor
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -44,7 +48,6 @@ app.use(session({
 app.use(routes)
 
 // Uygulama env üzerinde belirtilen port üzerinde çalıştırılıyor
-// TODO: dotenvin doğru çalışıp çalışmadığı test edilecek test edilmediği durumlarda sürekli 3000 portunda çalışabilir
 app.listen(PORT, err => {
     if (err) return console.log(`Cannot Listen on PORT: ${PORT}`)
     console.log(`Server running on port ${PORT}`)

@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "mysql" // postgresql de kullanılabilir env dosyası üzerinden tanımlanamıyor buradan portsgresql ayarlandı ise env dosyasında da postgresql olarak tanımlanmalı
   url      = env("DATABASE_URL")
 }
 

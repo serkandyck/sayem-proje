@@ -3,6 +3,8 @@ const bcrypt = require("bcrypt")
 const prisma = new PrismaClient()
 
 async function main() {
+
+    // Hazır tanımlı kullanıcı oluşturuluyor
     const createUser = await prisma.admin.create({
         data: {
             username: 'SAYEM',
@@ -10,6 +12,7 @@ async function main() {
         }
     })
 
+    // Formda talep tipi için hazır tanımlı veriler oluşturuluyor
     const requestType = await prisma.RequestType.createMany({
         data: [
             {

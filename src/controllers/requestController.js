@@ -1,6 +1,6 @@
 const db = require("../config/dbContext");
 const { v4: uuidv4 } = require('uuid');
-const { body } = require("express-validator")
+const { body, validationResult } = require('express-validator')
 
 const findRequestView = async(req, res) => {
     res.render("request/request", { title: "SAYEM | Talep sorgulama"});
@@ -8,6 +8,11 @@ const findRequestView = async(req, res) => {
 
 const findRequest = async(req, res) => {
     const { uuid } = req.body;
+
+    const errors = validationResult(req)
+    if(!errors.isEmpty()) {
+       console.log(errors.array)
+    }
     
     const request = await db.Request.findUnique({
         where: {
@@ -26,7 +31,7 @@ const findRequest = async(req, res) => {
     if(request) {
         res.status(201).json({data: request});
     } else {
-        res.render("request/request", { title: "SAYEM | Talep sorgulama", error: "Talep bulunamadı!"});
+        res.status(404).json({message: "Talep bulunamadı."});
     }
 }
 

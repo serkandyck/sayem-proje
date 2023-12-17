@@ -9,7 +9,7 @@ $( "#request-create" ).on("submit", function( event ) {
   
       $.ajax({
         type: "POST",
-        url: "/request/create",
+        url: "/request",
         dataType: "json",
         data: formData,
         encode: true,
@@ -44,21 +44,44 @@ $( "#request-create" ).on("submit", function( event ) {
 });
 
 $("#find-request-form").on("submit", function( event ) {
-  event.preventDefault();
+    event.preventDefault();
 
-  var formData = {
-      uuid: $("#request_uuid").val(),
-  };
+    var formData = {
+        uuid: $("#request_uuid").val(),
+    };
 
     $.ajax({
       type: "POST",
-      url: "/find-request",
+      url: "/request/find",
       data: formData,
       dataType: "json",
       encode: true,
     }).done(function (data) {
-      
-    }).fail(function (data) {
-      
+      console.log(data)
+      $("#request-form-card").addClass("hidden");
+      $("#request-detail-card").removeClass("hidden");
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+      if (jqXHR.status == 422) {
+        Swal.fire({
+          title: jqXHR.responseJSON.errors[0].msg,
+          icon: "error",
+          confirmButtonText: "Tamam",
+        });
+        document.body.classList.remove("swal2-height-auto");
+      } else if (jqXHR.status == 404) {
+        Swal.fire({
+          title: "Talep bulunamadı.",
+          icon: "error",
+          confirmButtonText: "Tamam",
+        });
+        document.body.classList.remove("swal2-height-auto");
+      } else {
+        Swal.fire({
+          title: "Beklenmedik bir hata ile karşılaşıldı",
+          icon: "error",
+          confirmButtonText: "Tamam",
+        });
+        document.body.classList.remove("swal2-height-auto");
+      }
     });
 });

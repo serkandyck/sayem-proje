@@ -5,20 +5,21 @@ const { createRequest, findRequest, findRequestView } = require("../controllers/
 const { authController, loginController } = require("../controllers/authController");
 
 const { requestCreateCheck } = require("../validators/requestCreate");
+const { validateRequestFind } = require("../validators/requestFind");
 
 const router = express.Router()
 
 // Anasayfa
 router.get("/", homeController);
 
-// Talep
-router.get("/request/:uuid", findRequest);
-// Talep oluşturma
-router.post("/request/create", createRequest);
 // Talep sorgulama
-router.get("/find-request", findRequestView);
-// Talep detayı
-router.post("/find-request", findRequest);
+router.get("/request", findRequestView);
+// Talep oluşturma
+router.post("/request", createRequest);
+// Tek talep sorgulama
+router.post("/request/find", validateRequestFind, findRequest);
+// Talep listesi
+
 
 router.get("/login", authController);
 router.post("/login", loginController);

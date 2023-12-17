@@ -14,13 +14,13 @@ async function main() {
     const requestType = await prisma.RequestType.createMany({
         data: [
             {
-                name: 'GENEL'
+                name: 'İstek'
             },
             {
-                name: 'ÖNERİ'
+                name: 'Şikayet'
             },
             {
-                name: 'ŞİKAYET'
+                name: 'Öneri'
             }
         ]
     })

@@ -44,8 +44,8 @@ body {
 }
 
 .cover-container {
-    width: 48em;
-    max-width: 48em;
+    width: 64em;
+    max-width: 64em;
 }
 
 
@@ -143,4 +143,8 @@ body {
 
 .hidden {
     display: none;
+}
+
+footer {
+  text-align: center;
 }

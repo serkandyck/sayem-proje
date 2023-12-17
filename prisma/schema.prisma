@@ -8,16 +8,16 @@ datasource db {
 }
 
 model Request {
-  id                Int      @id @default(autoincrement())
-  uuid              String   @unique
+  id                Int           @id @default(autoincrement())
+  uuid              String        @unique
   title             String
-  content           String
-  status            Boolean  @default(false)
+  content           String        @db.LongText	
+  status            Boolean       @default(false)
   responses         Response[]
-  requestType       RequestType    @relation(fields: [requestTypeId], references: [id])
+  requestType       RequestType   @relation(fields: [requestTypeId], references: [id])
   requestTypeId     Int
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
 }
 
 model RequestType {

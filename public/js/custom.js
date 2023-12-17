@@ -59,15 +59,23 @@ $("#find-request-form").on("submit", function( event ) {
     }).done(function (data) {
       $("#request-form-card").addClass("hidden");
       $("#request-detail-card").removeClass("hidden");
+      var reqStatusTitle = $("#req-status-title");
       var reqType = $("#req-type");
+      var reqContent = $("#req-content");
+      var reqTitle = $("#req-title");
+      var reqCreated = $("#req-createdAt");
+      var reqCreatedAt = $("#req-created");
       var reqStatus = $("#req-status");
-      var reqDate = $("#req-date");
-      var reqLastUpdate = $("#req-last-update");
+      
+      reqStatusTitle.html("Talep NO: " + data.data.uuid);
+      reqType.html("Talep Tipi: " + "<span class='badge badge-warning'>" + requestTypeConverter(data.data.requestTypeId) + "</span>");
+      reqCreated.html("Talep Tarihi: " + "<span class='badge badge-success'>" + new Date(data.data.createdAt).toLocaleDateString('en-GB') + "</span>");
+      reqCreatedAt.html("Son güncelleme: " + "<span class='badge badge-info'>" + prettyDate(data.data.updatedAt) + "</span>");
+      reqStatus.html(requestStatusConverter(data.data.status));
 
-      reqType.html(data.data.requestTypeId);
-      reqStatus.text(data.data.status);
-      reqDate.html(prettyDate(data.data.createdAt));
-      reqLastUpdate.html(prettyDate(data.data.updatedAt));
+      reqTitle.html(data.data.title);
+      reqContent.html(data.data.content);
+      
 
     }).fail(function (jqXHR, textStatus, errorThrown) {
       if (jqXHR.status == 422) {
@@ -95,6 +103,27 @@ $("#find-request-form").on("submit", function( event ) {
     });
 });
 
+function requestStatusConverter(status) {
+    if (status) {
+      return "Cevaplandı";
+    } else {
+      return '<span class="badge badge-warning">Beklemede</span>';
+    }
+}
+
+function requestTypeConverter(type) {
+    switch(type) {
+        case 1:
+            return "İstek";
+        case 2:
+            return "Şikayet";
+        case 3:
+            return "Öneri";
+        default:
+            return "Bilinmeyen";
+    }
+}
+
 function prettyDate(time){
   var date = new Date((time || "").replace(/-/g,"/").replace(/[TZ]/g," ")),
       diff = (((new Date()).getTime() - date.getTime()) / 1000),
@@ -102,12 +131,12 @@ function prettyDate(time){
   if ( isNaN(day_diff) || day_diff < 0 || day_diff >= 31 )
       return;
   return day_diff == 0 && (
-          diff < 60 && "biraz önce" ||
-          diff < 120 && "1 dakika önce" ||
-          diff < 3600 && Math.floor( diff / 60 ) + " dakika önce" ||
-          diff < 7200 && "1 saat önce" ||
-          diff < 86400 && Math.floor( diff / 3600 ) + " saat önce") ||
-      day_diff == 1 && "Dün" ||
-      day_diff < 7 && day_diff + " g" ||
-      day_diff < 31 && Math.ceil( day_diff / 7 ) + " h";
+          diff < 60 && '<span class="badge badge-info">biraz önce</span>' ||
+          diff < 120 && '<span class="badge badge-info">1 dakika önce</span>' ||
+          diff < 3600 && Math.floor( diff / 60 ) + ' dakika önce' ||
+          diff < 7200 && '<span class="badge badge-info">1 saat önce</span>' ||
+          diff < 86400 && Math.floor( diff / 3600 ) + ' saat önce') ||
+      day_diff == 1 && '<span class="badge badge-info">Dün</span>' ||
+      day_diff < 7 && day_diff + ' gün önce' ||
+      day_diff < 31 && Math.ceil( day_diff / 7 ) + ' hafta önce';
 }

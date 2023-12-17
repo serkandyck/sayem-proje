@@ -1,11 +1,11 @@
 const db = require("../config/dbContext")
 const bcrypt = require("bcrypt")
 
-const authController = async(req, res) => {
+const view = async(req, res) => {
     res.render("auth/login", { title: "SAYEM | Yetkili girişi"})
 }
 
-const loginController = async(req, res) => {
+const login = async(req, res) => {
     const { username, password } = req.body
 
     const user = await db.Admin.findUnique({
@@ -31,6 +31,6 @@ const loginController = async(req, res) => {
 }
 
 module.exports =  {
-    authController,
-    loginController
+    view,
+    login
 };

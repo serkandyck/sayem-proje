@@ -1,30 +1,23 @@
 const express = require('express')
 
-const { homeController } = require("../controllers/homeController");
+const homeController  = require("../controllers/homeController");
 const requestController = require("../controllers/requestController");
-const { authController, loginController } = require("../controllers/authController");
-
-const { requestCreateCheck } = require("../validators/requestCreate");
-const { validateRequestFind } = require("../validators/requestFind");
+const authController = require("../controllers/authController");
 
 const router = express.Router()
 
 // Anasayfa
-router.get("/", homeController);
+router.get("/", homeController.view);
 
-// Talep sorgulama
-router.get("/request", requestController.requestView);
-router.post("/request/create", requestController.createRequest);
-router.post("/request/:uuid", requestController.findRequest);
-// Talep oluşturma
-
-// Tek talep sorgulama
-router.post("/request/find", requestController.findRequest);
-// Talep listesi
+// Talep işlemleri
+router.get("/request", requestController.view);
+router.post("/request", requestController.create);
+router.post("/request/:uuid", requestController.find);
 
 
-router.get("/login", authController);
-router.post("/login", loginController);
+
+router.get("/login", authController.view);
+router.post("/login", authController.login);
 
 
 

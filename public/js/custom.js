@@ -57,9 +57,18 @@ $("#find-request-form").on("submit", function( event ) {
       dataType: "json",
       encode: true,
     }).done(function (data) {
-      console.log(data)
       $("#request-form-card").addClass("hidden");
       $("#request-detail-card").removeClass("hidden");
+      var reqType = $("#req-type");
+      var reqStatus = $("#req-status");
+      var reqDate = $("#req-date");
+      var reqLastUpdate = $("#req-last-update");
+
+      reqType.html(data.data.requestTypeId);
+      reqStatus.text(data.data.status);
+      reqDate.html(prettyDate(data.data.createdAt));
+      reqLastUpdate.html(prettyDate(data.data.updatedAt));
+
     }).fail(function (jqXHR, textStatus, errorThrown) {
       if (jqXHR.status == 422) {
         Swal.fire({
@@ -85,3 +94,20 @@ $("#find-request-form").on("submit", function( event ) {
       }
     });
 });
+
+function prettyDate(time){
+  var date = new Date((time || "").replace(/-/g,"/").replace(/[TZ]/g," ")),
+      diff = (((new Date()).getTime() - date.getTime()) / 1000),
+      day_diff = Math.floor(diff / 86400);
+  if ( isNaN(day_diff) || day_diff < 0 || day_diff >= 31 )
+      return;
+  return day_diff == 0 && (
+          diff < 60 && "biraz önce" ||
+          diff < 120 && "1 dakika önce" ||
+          diff < 3600 && Math.floor( diff / 60 ) + " dakika önce" ||
+          diff < 7200 && "1 saat önce" ||
+          diff < 86400 && Math.floor( diff / 3600 ) + " saat önce") ||
+      day_diff == 1 && "Dün" ||
+      day_diff < 7 && day_diff + " g" ||
+      day_diff < 31 && Math.ceil( day_diff / 7 ) + " h";
+}

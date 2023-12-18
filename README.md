@@ -3,7 +3,7 @@ SERKAN DAYICIK
 
 ### Dependencies
 
-Proje son versiyon NodeJS LTS versiyonu gerektirir [NodeJS v20.10.0](https://nodejs.org/en) IIS Server için NodeJS ve proje dosya yollarına geçerli okuma ve yazma izinleri verilmiş olmalıdır
+Proje NodeJS LTS versiyonu gerektirir [NodeJS v20.10.0](https://nodejs.org/en) IIS Server için NodeJS ve proje dosya yollarına geçerli okuma ve yazma izinleri verilmiş olmalıdır
 IIS için HttpPlatformHandler v1.2 modülü gerektirir [HttpPlatformHandler v1.2](https://www.iis.net/downloads/microsoft/httpplatformhandler)
 
 Proje bağımlılıkları ve açıklamaları aşşağıda belirtilmiştir ve package.json üzerinde tek komut ile kurulabilmektedir:
@@ -24,15 +24,15 @@ Sadece development environment üzerinde kullanılan kütüphaneler
 * `prisma": "^5.7.0` Projemizin Database ORM Framework kütüphanesi
 
 
-## 📓 Database Entity Relation Diagram
+## 📓 Veritabanı Varlık İlişki Diyagramı (ERD)
 
-* diagram modeli [ERD.md](./ERD.md)
+* Model diyagramı için [ERD.md](./ERD.md)
 
 ## Uyarı
-> .env.example dosyası PORT ve Database verileri ayarlanıp ardından ismi .env olarak değiştirilmeli.
+> `.env.example` dosyasındaki PORT ve Database verileri ayarlanmalı ve ardından dosya adı `.env` olarak değiştirilmelidir.
 
-## 💾 Dev Env Kurulum
-Development env içerisinde nodemon ile sunucu ayağa kaldırılır ve değişiklikler anlık olarak yansıtılır
+## 💾 Geliştirme Ortamı Kurulumu
+Geliştirme ortamı içinde nodemon ile sunucu başlatılır ve yapılan değişiklikler anlık olarak yansıtılır:
 
 ```shell
 npm install
@@ -43,8 +43,8 @@ npx prisma db seed
 npm run dev
 ```
 
-## 💾 Prod Env Kurulum
-Production env içerisinde IIS Server kullanılır ve ENV olarak production gönderilir bu ayarlama web.config içerisinde yapılmıştır
+## 💾 Üretim Ortamı Kurulumu
+Üretim ortamında IIS Server kullanılır ve çevre değişkeni olarak "production" gönderilir; bu ayarlama `web.config` dosyasında yapılmıştır
 
 ```shell
 npm install

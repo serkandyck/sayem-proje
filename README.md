@@ -15,6 +15,7 @@ Proje bağımlılıkları ve açıklamaları aşağıda belirtilmiştir ve bunla
 * `express": "^4.18.2` Node.js tabanlı bir web uygulama sunucu çatısıdır ve projemizin temelini oluşturur
 * `express-ejs-layouts` URL bazlı alanlara farklı layoutlar servis etmemizi sağlayan kütüphane
 * `express-session": "^1.17.3` Express içerisin de session tutmamızı sağlayan kütüphane
+* `memorystore": "^1.6.7` Session memory store kütüphanesi
 * `uuid": "^9.0.1` Her bir talep için benzersiz bir kimlik oluşturan kütüphane
 
 Sadece geliştirme ortamı üzerinde kullanılan kütüphaneler

@@ -2,7 +2,7 @@
 
 ```mermaid
 erDiagram
-"Request(Talep)" {
+"Request" {
     Int id PK
     String uuid UK
     String title
@@ -12,15 +12,15 @@ erDiagram
     DateTime createdAt
     DateTime updatedAt
 }
-"RequestType(Talep Türü)" {
+"RequestType" {
     Int id PK
     String name
 }
-"Admin(Yetkili)" {
+"Admin" {
     String username PK
     String password
 }
-"Response(Cevap)" {
+"Response" {
     Int id PK
     String message
     String authorName FK

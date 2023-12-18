@@ -7,11 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-generator markdown {
-    provider = "node ./node_modules/prisma-markdown/lib/executable/markdown"
-    title    = "Shopping Mall"
-}
-
 model Request {
   id                Int           @id @default(autoincrement())
   uuid              String        @unique

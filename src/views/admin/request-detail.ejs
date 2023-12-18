@@ -1,52 +1,61 @@
-<div class="container-fluid py-3">
-    <div class="row">
-        <div class="col-md-12 mx-auto">
-          <main id="request-detail-card" role="main" class="container">
-              <div class="d-flex align-items-center my-3 text-white-50 bg-purple rounded box-shadow">
-                <div class="lh-100">
-                  <h6 class="mb-0 text-white lh-100">Talep NO: <%= data.uuid %></h6>
-                  <ul class="list-unstyled mb-0">
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Talep Detay</h1>
+    <!--<div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group mr-2">
+        <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+    </div>
+    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+        <span data-feather="calendar"></span>
+        This week
+    </button>
+    </div>-->
+</div>
 
-                    <li class="text-white">
-                      <small>Talep Tipi: <span class='badge badge-warning' id="req-type"></span></small>
-                    </li>
-                    <li class="text-white">
-                      <small>Talep Tarihi: <span class='badge badge-success' id="req-createdAt"></span></small>
-                    </li>
-                  </ul>
-                </div>
+<div class="row">
+    <div class="col-md-12 mx-auto">
+        <div class="col-xl-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title mb-0">Talep : <%= data.uuid %></h4>
+                <span>Talep Tipi: <span class="badge badge-warning" id="req-type"></span></span>
+                <span>Talep Tarihi: <span class="badge badge-success" id="req-createdAt"></span></span>
+                <span>Talep Durumu: <span id="req-status"></span></span>
               </div>
-        
-              <div class="my-3 p-3 bg-white rounded box-shadow">
-                <div class="border-bottom border-gray row">
-                  <div class="col-sm">
-                    <h6 class="pb-2 mb-0 sayem-title-black">Talebiniz</h6>
+              <div class="card-body">
+                <form action="/admin/request/response" method="POST" class="needs-validation" novalidate>
+                  <div class="row col-md-12 mb-2">
+                    <div class="profile-title">
+                      <div class="d-flex">
+                        <div class="flex-grow-1">
+                          <h4 class="mb-1"><%= data.title %></h4>
+                          <p><%= data.content %></p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-sm text-right">
-                    <small id="req-status" class="sayem-title-black"></small>
+                  <div class="mb-3">
+                    <h6 class="form-label">Cevap</h6>
+                    <input type="hidden" name="requestId" value="<%= data.id %>">
+                    <textarea class="form-control" rows="5" name="responseContent" required></textarea>
+                    <div class="invalid-feedback">
+                        Lütfen bir cevap yazınız.
+                    </div>
                   </div>
-                </div>
-                <div class="media text-muted pt-3">
-                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-black">
-                    <strong id="req-title" class="d-block sayem-title-black"></strong>
-                    <span id="req-content"></span>
-                  </p>
-                </div>
-                
-                <small class="d-block text-right mt-3">
-                  <small id="req-created" class="sayem-title-black"></small>
-                </small>
+                  <div class="form-footer">
+                    <button class="btn btn-primary btn-block">Cevapla</button>
+                  </div>
+                </form>
               </div>
-        
-              <div class="my-3 p-3 bg-white rounded box-shadow">
+            </div>
+            <div class="card-body">
                 <h6 class="border-bottom border-gray pb-2 mb-0 sayem-title-black">Yetkili Cevapları</h6>
-                <div class="media text-muted pt-3">
-                  <ul id="admin-responses" style="width: 100%;list-style-type:none;padding-left: 0px;">
-                  </ul>
+                <div class="media text-muted pt-3" style="width: 100%;">
+                    <ul id="admin-responses" style="width: 100%;list-style-type:none;padding-left: 0px;">
+                    </ul>
                 </div>
-              </div>
-            </main>
-        </div>
+            </div>
+          </div>
     </div>
 </div>
 
@@ -59,8 +68,6 @@
             $("#req-type").text(requestTypeConverter(data.requestTypeId));
             $("#req-createdAt").text(dateFormater(data.createdAt));
             $("#req-status").html(requestStatusConverter(data.status));
-            $("#req-title").text(data.title);
-            $("#req-content").text(data.content);
             $("#req-created").html(prettyDate(data.createdAt));
 
             if (data.responses.length > 0) {
@@ -79,7 +86,7 @@
                 `);
                 });
             } else {
-                $("#admin-responses").html("Talebinize henüz bir cevap verilmedi.");
+                $("#admin-responses").html("Talep hiçbir yetkili tarafından cevaplanmdı.");
             }
 
             

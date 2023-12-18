@@ -5,7 +5,15 @@
     <nav class="nav nav-masthead sayem-nav-link justify-content-center">
         <a class="btn sayem-secondary-button" href="/request">Talep Sorgulama</a>
         <% if (username) { %>
-            <a class="btn sayem-primary-button" href="/login"><%= username %></a>
+            <div class="dropdown">
+                <button class="btn sayem-primary-button dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <%= username %>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="/admin">Yetkili paneli</a>
+                  <a class="dropdown-item" href="/logout">Çıkış yap</a>
+                </div>
+            </div>
         <% } else { %>
             <a class="btn sayem-primary-button" href="/login">Yetkili Girişi</a>
         <% } %>

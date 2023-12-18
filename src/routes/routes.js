@@ -19,6 +19,8 @@ router.post("/request/:uuid", requestController.find);
 
 // Yetkili işlemleri
 router.get("/admin", requireAuth, adminController.view);
+router.get("/admin/request/:uuid", requireAuth, adminController.detail);
+router.post("/admin/request/response", requireAuth, adminController.response);
 
 
 // Authentication işlemleri

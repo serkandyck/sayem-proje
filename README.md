@@ -3,4 +3,4 @@ SERKAN DAYICIK
 
 ## 📓 Database Entity Relation Diagram
 
-* diagram modeli [dev mdBook](./blob/main/ERD.md)
+* diagram modeli [dev mdBook](./ERD.md)

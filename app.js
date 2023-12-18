@@ -49,7 +49,6 @@ app.use(session({
     cookie: { secure: false }
 }));
 
-app.set('trust proxy', 1)
 // Production ortamında https üzerinden çalıştırılıyorsa secure cookie kullanılıyor
 if (app.get('env') === 'production') {
     app.set('trust proxy', 1) // trust first proxy

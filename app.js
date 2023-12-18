@@ -44,14 +44,8 @@ app.use(session({
     }),
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false }
+    cookie: { secure: app.get('env') === 'production' ? true : false, }
 }));
-
-// Production ortamında https üzerinden çalıştırılıyorsa secure cookie kullanılıyor
-if (app.get('env') === 'production') {
-    app.set('trust proxy', 1) // trust first proxy
-    session.cookie.secure = true // serve secure cookies
-}
 
 // Session bilgisini tüm uygulama ulaşılır kılıyoruz
 app.use(function(req, res, next) {

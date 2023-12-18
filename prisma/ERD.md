@@ -1,11 +1,8 @@
 # SAYEM Yazılım Geliştirici 5 Database Entity Relationship Diagram
 
-- [default](#default)
-
-## default
 ```mermaid
 erDiagram
-"Request" {
+"Request(Talep)" {
     Int id PK
     String uuid UK
     String title
@@ -15,15 +12,15 @@ erDiagram
     DateTime createdAt
     DateTime updatedAt
 }
-"RequestType" {
+"RequestType(Talep Türü)" {
     Int id PK
     String name
 }
-"Admin" {
+"Admin(Yetkili)" {
     String username PK
     String password
 }
-"Response" {
+"Response(Cevap)" {
     Int id PK
     String message
     String authorName FK
@@ -36,7 +33,7 @@ erDiagram
 "Response" }o--|| "Request" : request
 ```
 
-### `Request`
+### `Request(Talep)`
 
 **Properties**
   - `id`: 
@@ -48,19 +45,19 @@ erDiagram
   - `createdAt`: 
   - `updatedAt`: 
 
-### `RequestType`
+### `RequestType(Talep Türü)`
 
 **Properties**
   - `id`: 
   - `name`: 
 
-### `Admin`
+### `Admin(Yetkili)`
 
 **Properties**
   - `username`: 
   - `password`: 
 
-### `Response`
+### `Response(Cevap)`
 
 **Properties**
   - `id`: 

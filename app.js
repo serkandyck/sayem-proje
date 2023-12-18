@@ -3,12 +3,8 @@ const bodyParser = require('body-parser')
 const expressLayouts = require('express-ejs-layouts')
 const { v4: uuidv4 } = require('uuid');
 
-
-
 const session = require('express-session');
-var MemoryStore = session.MemoryStore;
-
-var fileStoreOptions = {};
+const MemoryStore = require('memorystore')(session)
 
 let app = express()
 
@@ -43,7 +39,9 @@ app.use(session({
         return uuidv4() // use UUIDs for session IDs
     },
     secret: process.env.SECRET,
-    store: new MemoryStore({reapInterval: 60000 * 10}),
+    store: new MemoryStore({
+        checkPeriod: 86400000 // prune expired entries every 24h
+    }),
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false }

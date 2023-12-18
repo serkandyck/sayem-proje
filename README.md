@@ -1,7 +1,7 @@
 # Sayem Yazılım geliştirici 5 projesi
 SERKAN DAYICIK
 
-### Dependencies
+### Bağımlılıklar
 
 Proje NodeJS LTS versiyonu gerektirir [NodeJS v20.10.0](https://nodejs.org/en) IIS Server için NodeJS ve proje dosya yollarına geçerli okuma ve yazma izinleri verilmiş olmalıdır
 IIS için HttpPlatformHandler v1.2 modülü gerektirir [HttpPlatformHandler v1.2](https://www.iis.net/downloads/microsoft/httpplatformhandler)

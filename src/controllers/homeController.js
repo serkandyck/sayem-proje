@@ -1,7 +1,7 @@
-const db = require("../config/dbContext");
+const requestTypeRepository = require("../repository/requestTypeRepository");
 
 const view = async(req, res) => {
-    const types = await db.RequestType.findMany()
+    const types = await requestTypeRepository.findMany()
     res.render("home", { title: "SAYEM | Talep toplama formu", data: types});
 }
 

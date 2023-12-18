@@ -1,4 +1,4 @@
-const db = require("../config/dbContext");
+const requestRepository = require("../repository/requestRepository");
 const { v4: uuidv4 } = require('uuid');
 
 const view = async(req, res) => {
@@ -8,7 +8,7 @@ const view = async(req, res) => {
 const find = async(req, res) => {
     const uuid  = req.params.uuid;
     
-    const request = await db.Request.findFirst({
+    const request = await requestRepository.findFirst({
         where: {
             uuid: uuid
         },
@@ -30,7 +30,7 @@ const find = async(req, res) => {
 const create = async(req, res) => {
     const { requestType, requestTitle, requestContent } = req.body;
 
-    const request = await db.Request.create({
+    const request = await requestRepository.create({
         data :{
             uuid: uuidv4(),
             title: requestTitle,

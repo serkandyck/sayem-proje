@@ -1,4 +1,4 @@
-const db = require("../config/dbContext")
+const adminRepository = require("../repository/adminRepository");
 const bcrypt = require("bcrypt")
 
 const view = async(req, res) => {
@@ -9,7 +9,7 @@ const view = async(req, res) => {
 const login = async(req, res) => {
     const { username, password } = req.body
 
-    const user = await db.Admin.findUnique({
+    const user = await adminRepository.findUnique({
         where: {
             username
         }

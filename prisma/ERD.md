@@ -36,33 +36,33 @@ erDiagram
 ### `Request(Talep)`
 
 **Properties**
-  - `id`: 
-  - `uuid`: 
-  - `title`: 
-  - `content`: 
-  - `status`: 
-  - `requestTypeId`: 
-  - `createdAt`: 
-  - `updatedAt`: 
+  - `id`: Primary Key INT
+  - `uuid`: Unique Key server tarafında generate edilir STRING
+  - `title`: Talep başlık STRING(191).
+  - `content`: Talep içerik LONGTEXT
+  - `status`: Talep durumu BOOLEAN
+  - `requestTypeId`: Talep türü Foreign Key INT
+  - `createdAt`: Talep oluşturulma tarihi DATETIME
+  - `updatedAt`: Talep Düzenleme tarihi DATETIME
 
 ### `RequestType(Talep Türü)`
 
 **Properties**
-  - `id`: 
-  - `name`: 
+  - `id`: Primary Key INT
+  - `name`: Talep türü STRING(191)
 
 ### `Admin(Yetkili)`
 
 **Properties**
-  - `username`: 
-  - `password`: 
+  - `username`: Primary Key STRING
+  - `password`: Şifre STRING
 
 ### `Response(Cevap)`
 
 **Properties**
-  - `id`: 
-  - `message`: 
-  - `authorName`: 
-  - `requestId`: 
-  - `createdAt`: 
-  - `updatedAt`: 
+  - `id`: Primary Key INT
+  - `message`: Cevap mesajı LONGTEXT
+  - `authorName`: Cevap veren yetkili username Foreign Key STRING
+  - `requestId`: Talep ID Foreign Key INT
+  - `createdAt`: Talep oluşturulma tarihi DATETIME
+  - `updatedAt`: Talep Düzenleme tarihi DATETIME

@@ -6,7 +6,7 @@ SERKAN DAYICIK
 Proje NodeJS LTS versiyonu gerektirir [NodeJS v20.10.0](https://nodejs.org/en) IIS Server için NodeJS ve proje dosya yollarına geçerli okuma ve yazma izinleri verilmiş olmalıdır
 IIS için HttpPlatformHandler v1.2 modülü gerektirir [HttpPlatformHandler v1.2](https://www.iis.net/downloads/microsoft/httpplatformhandler)
 
-Proje bağımlılıkları ve açıklamaları aşşağıda belirtilmiştir ve package.json üzerinde tek komut ile kurulabilmektedir:
+Proje bağımlılıkları ve açıklamaları aşağıda belirtilmiştir ve bunlar `package.json` üzerinden kurulabilir:
 
 * `@prisma/client: "^5.7.0",` Prisma ORM frameworkü client
 * `bcrypt": "^5.1.1,` Yetkili authentication mekanizması için şifre encrypt kütüphanesi

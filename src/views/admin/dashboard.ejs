@@ -18,12 +18,12 @@
     <table class="table table-striped table-sm">
         <thead>
             <tr>
-            <th>ID</th>
-            <th>BAŞLIK</th>
+            <th style="width: 16.66%">ID</th>
+            <th style="width: 16.66%">BAŞLIK</th>
             <th>İÇERİK</th>
             <th>TÜR</th>
             <th>DURUM</th>
-            <th>İŞLEMLER</th>
+            <th style="text-align: right;">İŞLEMLER</th>
             </tr>
         </thead>
         <tbody>
@@ -32,11 +32,25 @@
                     <td><%= request.uuid %></td>
                     <td><%= request.title %></td>
                     <td><%= request.content %></td>
-                    <td><%= request.requestTypeId %></td>
-                    <td><%= request.status %></td>
-                    <td><a href="/admin/request/<%= request.uuid %>" class="btn btn-sm btn-outline-secondary">Görüntüle</a></td>
+                    <% if(request.requestTypeId == 1){ %>
+                        <td><span class="badge badge-info">İSTEK</span></td>
+                     <% } else if (request.requestTypeId == 2) { %>
+                        <td><span class="badge badge-danger">ŞİKAYET</span></td>
+                    <% } else if (request.requestTypeId == 3) { %>
+                        <td><span class="badge badge-warning">ÖNERİ</span></td>
+                    <% } else { %>
+                        <td><td><span class="badge badge-secondary">BİLİNMEYEN</span></td></td>
+                    <% } %>
+
+                    <% if(request.status){ %>
+                        <td><span class="badge badge-success">CEVAPLANDI</span></td>
+                     <% } else { %>
+                        <td><span class="badge badge-danger">CEVAP BEKLİYOR</span></td>
+                    <% } %>
+                    <td style="text-align: right;"><a href="/admin/request/<%= request.uuid %>" class="btn btn-sm btn-outline-secondary">Görüntüle</a></td>
                 </tr>
             <% }); %>
         </tbody>
     </table>
 </div>
+

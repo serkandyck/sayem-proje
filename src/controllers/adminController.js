@@ -43,9 +43,12 @@ const response = async(req, res) => {
     });
     
     if(response) {
-        const request = await db.Request.findFirst({
+        const request = await db.Request.update({
             where: {
                 id: response.requestId
+            },
+            data: {
+                status: true
             }
         });
 

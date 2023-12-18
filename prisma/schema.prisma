@@ -7,6 +7,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+generator markdown {
+    provider = "node ./node_modules/prisma-markdown/lib/executable/markdown"
+    title    = "Shopping Mall"
+}
+
+//-----------------------------------------------------------
+// ARTICLES
+//-----------------------------------------------------------
+/// Attachment File.
+///
+/// Every attachment files that are managed in this shopping mall system.
+///
+/// For reference, it is possible to omit one of file name or extension like 
+/// `.gitignore` or `README` case, but not possible to omit both of them,
+///
+/// @namespace Articles
+/// @author Samchon
 model Request {
   id                Int           @id @default(autoincrement())
   uuid              String        @unique

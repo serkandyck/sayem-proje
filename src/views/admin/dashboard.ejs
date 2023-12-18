@@ -31,7 +31,7 @@
                 <tr>
                     <td><%= request.uuid %></td>
                     <td><%= request.title %></td>
-                    <td><%= request.content %></td>
+                    <td class="td-content"><%= request.content %></td>
                     <% if(request.requestTypeId == 1){ %>
                         <td><span class="badge badge-info">İSTEK</span></td>
                      <% } else if (request.requestTypeId == 2) { %>

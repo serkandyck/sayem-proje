@@ -3,8 +3,7 @@ SERKAN DAYICIK
 
 ### Bağımlılıklar
 
-Proje NodeJS LTS versiyonu gerektirir [NodeJS v20.10.0](https://nodejs.org/en) IIS Server için NodeJS ve proje dosya yollarına geçerli okuma ve yazma izinleri verilmiş olmalıdır
-IIS için HttpPlatformHandler v1.2 modülü gerektirir [HttpPlatformHandler v1.2](https://www.iis.net/downloads/microsoft/httpplatformhandler)
+Proje, [NodeJS v20.10.0](https://nodejs.org/en) LTS versiyonunu gerektirir. Ayrıca, IIS Server için NodeJS ve proje dosya yollarına geçerli okuma ve yazma izinleri verilmiş olmalıdır. IIS için [HttpPlatformHandler v1.2](https://www.iis.net/downloads/microsoft/httpplatformhandler) modülü de gereklidir.
 
 Proje bağımlılıkları ve açıklamaları aşağıda belirtilmiştir ve bunlar `package.json` üzerinden kurulabilir:
 
@@ -18,7 +17,7 @@ Proje bağımlılıkları ve açıklamaları aşağıda belirtilmiştir ve bunla
 * `express-session": "^1.17.3` Express içerisin de session tutmamızı sağlayan kütüphane
 * `uuid": "^9.0.1` Kullanıcı talepleri için istenen her talep için uniq bir id oluşturan kütüphane
 
-Sadece development environment üzerinde kullanılan kütüphaneler
+Sadece geliştirme ortamı üzerinde kullanılan kütüphaneler
 
 * `nodemon": "^3.0.2` Projemizi Dev Env üzerinde sürekli izleyen ve dosyalar da değişiklikleri tespit edip yansıtan server kütüphanesi
 * `prisma": "^5.7.0` Projemizin Database ORM Framework kütüphanesi
@@ -29,7 +28,7 @@ Sadece development environment üzerinde kullanılan kütüphaneler
 * Model diyagramı için [ERD.md](./ERD.md)
 
 ## Uyarı
-> `.env.example` dosyasındaki PORT ve Database verileri ayarlanmalı ve ardından dosya adı `.env` olarak değiştirilmelidir.
+> `.env.example` dosyasındaki PORT ve Database değişkenleri ayarlanmalı ve ardından dosya adı `.env` olarak değiştirilmelidir.
 
 ## 💾 Geliştirme Ortamı Kurulumu
 Geliştirme ortamı içinde nodemon ile sunucu başlatılır ve yapılan değişiklikler anlık olarak yansıtılır:

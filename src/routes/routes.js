@@ -5,7 +5,7 @@ const requestController = require("../controllers/requestController");
 const authController = require("../controllers/authController");
 const adminController = require("../controllers/adminController");
 
-const requireAuth = require("../middleware/authGuard");
+const requireAuth = require("../middlewares/authGuard");
 
 const router = express.Router()
 

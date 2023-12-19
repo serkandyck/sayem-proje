@@ -49,6 +49,11 @@ npx prisma db push
 npx prisma db seed
 ```
 
+## 💾 Örnek Üretim Ortamı
+Heroku üzerinde SSL ile birlikte üretim ortamında çalışan uygulama ücretsiz paket olduğu için biraz yavaş olabilir
+
+[Prod Uygulama](https://rocky-temple-56475-2dff71268dba.herokuapp.com/)
+
 ## 📓 Veritabanı Varlık İlişki Diyagramı (ERD)
 
 ```mermaid

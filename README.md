@@ -22,6 +22,8 @@ Sadece geliştirme ortamı üzerinde kullanılan kütüphaneler
 
 * `nodemon": "^3.0.2` Projemizi geliştirme ortamı üzerinde sürekli izleyen ve dosyalar da değişiklikleri tespit edip live reload server kütüphanesi
 * `prisma": "^5.7.0` Projemizin Database ORM Framework kütüphanesi
+* `mocha": "^10.2.0` Test kütüphanesi
+* `supertest": "^6.3.3` HTTP Test kütüphanesi
 
 
 ## Uyarı

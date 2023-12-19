@@ -4,6 +4,8 @@ const homeController  = require("../controllers/homeController");
 const requestController = require("../controllers/requestController");
 const authController = require("../controllers/authController");
 const adminController = require("../controllers/adminController");
+const responseController = require("../controllers/responseController");
+
 
 const requireAuth = require("../middlewares/authGuard");
 
@@ -20,7 +22,7 @@ router.post("/request/:uuid", requestController.find);
 // Yetkili işlemleri
 router.get("/admin", requireAuth, adminController.view);
 router.get("/admin/request/:uuid", requireAuth, adminController.detail);
-router.post("/admin/request/response", requireAuth, adminController.response);
+router.post("/admin/request/response", requireAuth, responseController.create);
 
 
 // Authentication işlemleri

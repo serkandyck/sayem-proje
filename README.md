@@ -3,7 +3,7 @@ SERKAN DAYICIK
 
 ### Bağımlılıklar
 
-Proje, [NodeJS v20.10.0](https://nodejs.org/en) LTS versiyonunu gerektirir. Ayrıca, IIS Server için NodeJS ve proje dosya yollarına geçerli okuma ve yazma izinleri verilmiş olmalıdır. IIS için [HttpPlatformHandler v1.2](https://www.iis.net/downloads/microsoft/httpplatformhandler) modülü de gereklidir.
+Proje, [NodeJS v20.10.0](https://nodejs.org/en) LTS versiyonunu ve MySQL gerektirir. Ayrıca, IIS Server için NodeJS ve proje dosya yollarına geçerli okuma ve yazma izinleri verilmiş olmalıdır. IIS için [HttpPlatformHandler v1.2](https://www.iis.net/downloads/microsoft/httpplatformhandler) modülü de gereklidir.
 
 Proje bağımlılıkları ve açıklamaları aşağıda belirtilmiştir ve bunlar `package.json` üzerinden kurulabilir:
 

@@ -62,3 +62,5 @@ app.listen(PORT, err => {
     if (err) return console.log(`Cannot Listen on PORT: ${PORT}`)
     console.log(`Server running on port ${PORT}`)
 })
+
+module.exports = app;

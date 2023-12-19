@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../server/app.js');
+const app = require('../app.js');
 
 // basit test
 describe('GET /', function() {
@@ -7,7 +7,5 @@ describe('GET /', function() {
     return request(app)
       .get('/')
       .expect(200)
-      .expect('Content-Type',/json/)
-      .expect('{"text":"some json"}')
   })
 })

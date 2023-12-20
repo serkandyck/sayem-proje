@@ -36,11 +36,11 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // Uygulama üzerinde session kullanımı için express-session kütüphanesi kullanılıyor
 app.use(session({
     genid: function(req) {
-        return uuidv4() // use UUIDs for session IDs
+        return uuidv4() // session id olarak uuid kullanılıyor
     },
     secret: process.env.SECRET,
     store: new MemoryStore({
-        checkPeriod: 86400000 // prune expired entries every 24h
+        checkPeriod: 86400000
     }),
     resave: false,
     saveUninitialized: true,
